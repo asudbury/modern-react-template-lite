@@ -4,7 +4,7 @@
 A modern, accessibility-first React 19 application built with Vite 7 and TypeScript 5. This template enforces strict rules for accessibility (WCAG 2.2 AA), performance, and code quality.
 
 ### Fully functional version
-There is a full functional version available here [modern-react-template](https://github.com/asudbury/modern-react-template)
+There is a fully functional version available here [modern-react-template](https://github.com/asudbury/modern-react-template)
 
 ## Features
 
