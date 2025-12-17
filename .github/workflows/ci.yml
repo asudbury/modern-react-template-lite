@@ -20,8 +20,6 @@ jobs:
       - name: Log workflow context
         run: |
           echo "[CI][lint] Triggered by $GITHUB_EVENT_NAME on ref $GITHUB_REF for $GITHUB_REPOSITORY"
-          echo "[CI][lint] ENABLE_JSDOC_BUILD=${{ vars.ENABLE_JSDOC_BUILD }}"
-          echo "[CI][lint] ENABLE_GH_PAGES=${{ vars.ENABLE_GH_PAGES }}"
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -39,8 +37,6 @@ jobs:
       - name: Log workflow context
         run: |
           echo "[CI][format] Triggered by $GITHUB_EVENT_NAME on ref $GITHUB_REF for $GITHUB_REPOSITORY"
-          echo "[CI][format] ENABLE_JSDOC_BUILD=${{ vars.ENABLE_JSDOC_BUILD }}"
-          echo "[CI][format] ENABLE_GH_PAGES=${{ vars.ENABLE_GH_PAGES }}"
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -59,8 +55,6 @@ jobs:
       - name: Log workflow context
         run: |
           echo "[CI][test] Triggered by $GITHUB_EVENT_NAME on ref $GITHUB_REF for $GITHUB_REPOSITORY"
-          echo "[CI][test] ENABLE_JSDOC_BUILD=${{ vars.ENABLE_JSDOC_BUILD }}"
-          echo "[CI][test] ENABLE_GH_PAGES=${{ vars.ENABLE_GH_PAGES }}"
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -87,8 +81,6 @@ jobs:
       - name: Log workflow context
         run: |
           echo "[CI][build] Triggered by $GITHUB_EVENT_NAME on ref $GITHUB_REF for $GITHUB_REPOSITORY"
-          echo "[CI][build] ENABLE_JSDOC_BUILD=${{ vars.ENABLE_JSDOC_BUILD }}"
-          echo "[CI][build] ENABLE_GH_PAGES=${{ vars.ENABLE_GH_PAGES }}"
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -101,7 +93,6 @@ jobs:
           path: dist/
           retention-days: 1
 
-  e2e:
     name: E2E Tests (Playwright + Axe)
     runs-on: ubuntu-latest
     needs: [build]
