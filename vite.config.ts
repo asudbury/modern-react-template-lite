@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [react()],
   // Use root path in dev for local convenience, and the
   // GitHub Pages subdirectory in production deployments.
-  base: mode === 'production' ? '/modern-react-template/app/' : '/',
+  base: mode === 'production' ? '/modern-react-template-lite/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

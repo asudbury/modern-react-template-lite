@@ -12,7 +12,7 @@ This guide will help you get up and running with the Modern React Template.
 ```bash
 # Clone the repository
 git clone <your-repo-url>
-cd modern-react-template
+cd modern-react-template-lite
 
 # Install dependencies
 npm install
@@ -22,8 +22,6 @@ npm run dev
 ```
 
 Visit `http://localhost:5173` to see your application.
-
-> **Note:** All optional features (SonarCloud, GitHub Pages, etc.) are disabled by default and won't interfere with your fork. See the README for details on enabling them.
 
 ## Next Steps
 

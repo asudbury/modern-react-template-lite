@@ -2,9 +2,9 @@
 
 This file contains project-specific guidelines and conventions for GitHub Copilot to follow when generating code for this repository.
 
-You are contributing to a modern, accessibility-first React 19 application built with Vite 7 and TypeScript 5. This repository enforces strict rules for accessibility (WCAG 2.2 AA), no inline JSX handlers, design tokens, TanStack React Query 5, Context + Reducers for client state, Vitest + RTL tests, and Playwright + Axe for E2E accessibility checks.
+You are contributing to a modern, accessibility-first React 19 application built with Vite 7 and TypeScript 5. This repository enforces strict rules for accessibility (WCAG 2.2 AA), no inline JSX handlers, design tokens, TanStack React Query 5, Context + Reducers for client state, Vitest + RTL tests, and Axe for E2E accessibility checks.
 
-> **Note for Forks:** This template is designed to be fork-friendly. All optional features (SonarCloud, GitHub Pages, and JSDoc in CI) are **disabled by default** and only run when explicitly enabled via repository variables. 
+> **Note for Forks:** This template is designed to be fork-friendly. 
 
 ## Purpose
 
@@ -12,31 +12,16 @@ This document is the authoritative source of conventions, constraints, and expec
 
 Use this file to guide Copilot suggestions and human contributors — prefer solutions that are accessible, well-typed, and maintainable.
 
-### Development Tools
-
-- **TypeDoc**: Automated API documentation generation from JSDoc comments. Documentation is published to GitHub Pages.
-- **SonarCloud**: Continuous code quality and security analysis integrated into CI/CD pipeline (optional, disabled by default for forks).
-- **GitHub Pages**: Deployment for app and documentation (optional, disabled by default for forks).
-
-### Optional Features (Opt-In Only)
-
-The following features are **disabled by default** to make this template fork-friendly:
-
-- **SonarCloud**: Only runs if `RUN_SONARCLOUD=true` in repository variables
-- **GitHub Pages**: Only runs if `ENABLE_GH_PAGES=true` in repository variables
-- **JSDoc in CI**: Only builds if `ENABLE_JSDOC_BUILD=true` in repository variables
-
 ## Core Principles
 
 1. **Accessibility First**: Every component must be keyboard-navigable, screen reader friendly, and WCAG 2.2 AA compliant
 2. **Type Safety**: All code must be strictly typed with TypeScript
 3. **No Default Exports**: Use named exports only for components and modules
 4. **Design Tokens Only**: Never use hardcoded colors or spacing - always use design tokens from `src/styles/tokens.css`
-5. **Data Validation**: All external data must be validated using Zod schemas
-7. **JSDoc Documentation**: All exported functions, components, and types must have comprehensive JSDoc comments for TypeDoc generation
-8. **Predictable APIs**: Components expose clear controlled/uncontrolled APIs, forward refs, accept `className` and `data-*` props
-9. **No inline JSX functions**: Avoid inline callbacks in JSX (e.g., `onClick={() => ...}`). Use `useCallback` or named functions defined outside of JSX to improve performance and testability
-10. **Tokenized styles**: Use design tokens via `src/styles/tokens.css`. Do not hardcode color or spacing values in components
+5. **Data Validation**: All external data must be validated using schemas
+6. **Predictable APIs**: Components expose clear controlled/uncontrolled APIs, forward refs, and accept `className` and `data-*` props
+7. **No inline JSX functions**: Avoid inline callbacks in JSX (e.g., `onClick={() => ...}`). Use `useCallback` or named functions defined outside of JSX to improve performance and testability
+8. **Tokenized styles**: Use design tokens via `src/styles/tokens.css`. Do not hardcode color or spacing values in components
 
 ## Repository Conventions
 
@@ -50,7 +35,7 @@ The following features are **disabled by default** to make this template fork-fr
 - **Pages**: Route components live in `src/pages/` (organize nested folders by campaign/iteration structure)
 - **Components**: Reusable UI belongs in `src/components/` (forms, tables, pickers, etc.). Group by feature and include `index.ts`, component file, styles, and tests
 - **Utils**: Pure utility functions belong in `src/utils/` (e.g., `ruleUtils`, `iterationUtils`, `validatorUtils`). Keep pure logic testable and side-effect free
-- **Types / Schemas**: Zod schemas and exported TS types live in `src/schemas/` — export both the runtime `schema` and the derived TypeScript `type`
+- **Types / Schemas**: Exported TS types live in `src/schemas/`
 
 ### Naming Conventions
 
@@ -93,64 +78,6 @@ The following features are **disabled by default** to make this template fork-fr
   // ❌ Bad
   export default function MyComponent() { }
   ```
-
-
-
-## JSDoc Documentation
-
-All functions, components, and types should have JSDoc comments following these guidelines:
-
-### Components
-
-````tsx
-/**
- * ComponentName
- *
- * Brief description of what the component does.
- *
- * Features:
- * - List key features
- * - Accessibility considerations
- * - Notable behaviors
- *
- * @example
- * ```tsx
- * <ComponentName prop="value">
- *   Content
- * </ComponentName>
- * ```
- */
-````
-
-### Functions
-
-````tsx
-/**
- * Brief description of what the function does
- *
- * @param paramName - Description of the parameter
- * @param optionalParam - Description (optional)
- * @returns Description of return value
- * @throws ErrorType - When error occurs
- *
- * @example
- * ```ts
- * const result = functionName(param);
- * ```
- */
-````
-
-### Types and Interfaces
-
-```tsx
-/**
- * Description of the type/interface
- *
- * @property prop1 - Description of prop1
- * @property prop2 - Description of prop2
- */
-```
-
 ## Component Structure
 
 ### Component File Organization
@@ -411,7 +338,7 @@ chore: configure commitlint hook
 
 - Use TanStack Query for all server/API data
 - Always include proper error handling
-- Use Zod schemas for response validation
+
 
 ```tsx
 const { data, isLoading, error } = useQuery({
@@ -633,12 +560,6 @@ function UserProfile({ userPromise }: { userPromise: Promise<User> }) {
   - Mock as little as possible
   - Prefer `toEqual` instead of `toBe`
 
-### E2E Tests
-
-- Use Playwright with Axe for accessibility testing
-- Test critical user flows
-- Always include `await axe(page)` for accessibility checks
-
 ### Advanced Testing Patterns
 
 **Testing Custom Hooks**
@@ -790,10 +711,10 @@ it('should match snapshot', () => {
 ### Fetch Utilities
 
 - Always use the `fetchData` utility from `src/queries/fetch.ts`
-- Include Zod schema for response validation
+
 - Handle errors properly with `FetchError`
 
-### Zod Schemas
+
 
 - Define schemas in `src/schemas/api.ts`
 - Export both schema and TypeScript type
@@ -1003,7 +924,6 @@ export function Dashboard() {
 
 - **Unit tests**: Vitest + React Testing Library (see Testing Requirements section above for detailed standards)
 - **Accessibility in unit tests**: Use `jest-axe` or `axe` to assert no violations for key components
-- **E2E and accessibility**: Playwright tests run `axe` scans in CI to detect regressions against WCAG 2.2 AA. E2E scripts are in the `playwright` folder and invoked by CI
 - **CI pipeline**: Lint → Format Check → Unit tests → Build → E2E (Playwright + axe). Axe failures should fail the workflow
 
 ## Required Libraries & Tools
@@ -1126,7 +1046,7 @@ import './styles.css';
 
 ## Error Handling
 
-- Always validate input data with Zod
+- Always validate input data with schemas
 - Use try-catch blocks for async operations
 - Provide user-friendly error messages
 - Log errors appropriately
@@ -1423,7 +1343,7 @@ type ColorClass = `${ColorVariant}-${ColorShade}`;
 
 - Use controlled inputs with React state for form fields
 - Validate on blur and on submit (not on every keystroke for better UX)
-- Use Zod schemas for form validation
+- Use schemas for form validation
 - Provide clear, accessible error messages
 
 ### Example Form with Validation
@@ -1994,6 +1914,11 @@ ENABLE_GH_PAGES=false
 # Optional: enable HTML JSDoc (TypeDoc) builds in CI and Pages workflows
 # Controlled via GitHub Actions variables (ENABLE_JSDOC_BUILD) and this
 # local flag for consistency. Leave false by default for forks.
+# Optional: enable HTML JSDoc (TypeDoc) builds in CI and Pages workflows
+# Controlled via GitHub Actions variables (ENABLE_JSDOC_BUILD) and this
+ENABLE_JSDOC_BUILD=false
+# Write JSDoc comments
+Write JSDoc comments
 ENABLE_JSDOC_BUILD=false
 ```
 
@@ -2031,12 +1956,6 @@ Run unit tests:
 npm run test:unit
 ```
 
-Run Playwright E2E locally:
-
-```bash
-npm run test:e2e
-```
-
 Create a production build:
 
 ```bash
@@ -2051,13 +1970,13 @@ Keep this file updated as tooling or conventions change. When introducing new es
 
 - **Don't** mutate reducer state directly - always return new objects
 - **Don't** use array indices as React keys - use stable unique identifiers (database IDs, UUIDs via `uuid.v4()`, or other stable unique values)
-- **Don't** mix client/server state - campaigns from API go through TanStack Query only
+- **Don't** mix client/server state - keep API and client state separate
 - **Don't** disable ESLint rules without justification - discuss with maintainers first
 - **Don't** use inline styles or hardcoded colors - always use design tokens
 - **Don't** forget to test keyboard navigation and screen reader behavior for new components
 - **Don't** ignore accessibility violations in CI - fix them before merging
-- **Don't** use `any` or `unknown` types - always prefer strict typing with interfaces or `zod` schemas
-- **Don't** overuse context - prefer local state or TanStack Query where applicable
+- **Don't** use `any` or `unknown` types - always prefer strict typing with interfaces or schemas
+- **Don't** overuse context - prefer local state where applicable
 - **Don't** forget to document component APIs and accessibility features in comments or README files
 
 ## Recommended package.json Scripts
@@ -2073,7 +1992,6 @@ Ensure your `package.json` defines at least the following scripts so tooling and
   "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\"",
   "test": "vitest",
   "test:unit": "vitest",
-  "test:e2e": "playwright test",
   "prepare": "husky install"
 }
 ```
@@ -2149,27 +2067,16 @@ Ensure your `package.json` defines at least the following scripts so tooling and
 ## Project Setup Checklist (Quick Start)
 
 1. **Scaffold app**: `npm create vite@latest my-app -- --template react-ts`
-2. **Install deps**: `npm install` (React 19, Vite 7, TS 5, TanStack Query, Vitest, RTL, Playwright, axe, Husky, lint-staged, ESLint, Prettier)
-3. **Configure design tokens**: tokens in `src/styles/tokens.css`
-4. **Add env config**: create `.env.example` and document variables in `README.md`
-5. **Add ignores**: `.gitignore` and `.gitleaksignore` in repo root
-6. **Set up Husky**: `npx husky install` and `.husky/pre-commit` running `npm run prettier`, `npm run test`, `npm run lint`, `npm run build`
-7. **Wire TanStack Query**: create `src/queries/fetch.ts`, `src/queries/mutate.ts`, and `src/queries/schemas.ts` using `zod`
-8. **Set up Context**: add context provider with reducer-based global state (file name and details up to implementation)
-9. **Create example page & component**: `ExampleComponent` and `HomePage` following accessibility and testing standards
-10. **Configure CI**: `.github/workflows/ci.yml` running lint → unit tests → build → Playwright + axe
+2. **Install deps**: `npm install` (React 19, Vite 7, TS 5, Vitest, RTL, axe, Husky, lint-staged, ESLint, Prettier)
+3. **Add env config**: create `.env.example` and document variables in `README.md`
+4. **Add ignores**: `.gitignore` and `.gitleaksignore` in repo root
+5. **Set up Husky**: `npx husky install` and `.husky/pre-commit` running `npm run prettier`, `npm run test`, `npm run lint`, `npm run build`
+6. **Configure CI**: `.github/workflows/ci.yml` running lint → unit tests → build →  axe
 
 ## Where to Find Key Files
 
-- Tokens: `src/styles/tokens.css`
-
 - ESLint: `eslint.config.js`
 - CI workflow: `.github/workflows/ci.yml`
-- Playwright tests: `playwright` or `tests/e2e`
-- GitHub Pages entry points:
-  - Landing page: `https://asudbury.github.io/modern-react-template/`
-  - Demo App: `https://asudbury.github.io/modern-react-template/app`
-  - API Docs: `https://asudbury.github.io/modern-react-template/docs`
 
 ## Contact / Questions
 
@@ -2188,7 +2095,6 @@ npm run dev              # Start dev server
 # Testing
 npm run test             # Run unit tests (watch mode)
 npm run test:coverage    # Run tests with coverage
-npm run test:e2e         # Run Playwright E2E tests
 npm run test:ui          # Open Vitest UI
 
 # Code Quality
@@ -2197,10 +2103,6 @@ npm run lint:fix         # Fix ESLint issues
 npm run prettier         # Format code
 npm run build            # Type check and build
 
-# Documentation
-npm run docs             # Generate all docs
-npm run docs:md          # Generate markdown docs
-npm run docs:html        # Generate HTML docs
 ```
 
 ### File Templates Quick Reference
@@ -2272,22 +2174,6 @@ export function useMyHook(initialValue: string) {
 }
 ```
 
-**New Zod Schema**
-
-```tsx
-// src/schemas/mySchema.ts
-import { z } from 'zod';
-
-export const mySchema = z.object({
-  id: z.string().uuid(),
-  name: z.string().min(1),
-  email: z.string().email(),
-  createdAt: z.string().datetime(),
-});
-
-export type MyType = z.infer<typeof mySchema>;
-```
-
 ### Common Patterns Quick Reference
 
 | Pattern           | When to Use                                  | Example                                                                   |
@@ -2297,9 +2183,7 @@ export type MyType = z.infer<typeof mySchema>;
 | `memo`            | Pure components that render often            | `export const Item = memo(({ data }) => ...)`                             |
 | `forwardRef`      | Components that need to expose DOM refs      | `export const Input = forwardRef<HTMLInputElement, Props>(...)`           |
 | `cn` utility      | Merging class names                     | `className={cn('base-class', conditional && 'extra-class')}`              |
-| TanStack Query    | Server data fetching                         | `const { data } = useQuery({ queryKey: ['users'], queryFn: fetchUsers })` |
-| Context + Reducer | Global client state                          | `const { state, dispatch } = useContext(AppContext)`                      |
-| Zod schemas       | Data validation                              | `const result = schema.safeParse(data)`                                   |
+
 
 ### Accessibility Quick Reference
 
@@ -2332,8 +2216,6 @@ export type MyType = z.infer<typeof mySchema>;
 - Use named exports
 - Use design tokens for colors/spacing
 - Use `useCallback` for event handlers
-- Validate external data with Zod
-- Write JSDoc comments
 - Test accessibility with axe
 - Use semantic HTML
 - Handle loading and error states

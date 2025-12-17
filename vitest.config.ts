@@ -16,7 +16,7 @@ export default defineConfig({
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
-      '**/playwright/**',
+
       '**/.{idea,git,cache,output,temp}/**',
     ],
     coverage: {
