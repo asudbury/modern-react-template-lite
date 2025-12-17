@@ -1,0 +1,394 @@
+/* ===================== Theme Utility Classes (Token-based) ===================== */
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-primary-foreground {
+    color: var(--color-primary-foreground);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .text-secondary-foreground {
+    color: var(--color-secondary-foreground);
+  }
+  .text-surface {
+    color: var(--color-surface);
+  }
+  .text-text-primary {
+    color: var(--color-text);
+  }
+  .text-text-secondary {
+    color: var(--color-surface);
+  }
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+}
+
+/* ===================== Design Tokens & Theme Layers ===================== */
+@layer tokens {
+  :root {
+    /* Primary and secondary color tokens */
+    --color-primary: #2563eb;
+    --color-primary-foreground: #fff;
+    --color-secondary: #7c4700;
+    --color-secondary-foreground: #222;
+    /* Background and text */
+    --color-background: #fff;
+    --color-surface: #f3f4f6;
+    --color-text: #222;
+    /* Add more tokens as needed */
+  }
+}
+
+@layer theme {
+  .theme-dark {
+    --color-primary: #60a5fa;
+    --color-primary-foreground: #18181b;
+    --color-secondary: #fbbf24;
+    --color-secondary-foreground: #18181b;
+    --color-background: #18181b;
+    --color-surface: #27272a;
+    --color-text: #f3f4f6;
+    /* Add more dark theme overrides as needed */
+  }
+}
+
+/* ===================== Example Usage ===================== */
+@layer components {
+  .button-primary {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+  .button-secondary {
+    background: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+  }
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* ===================== Layout & Container ===================== */
+.container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ===================== Spacing Utilities ===================== */
+.p-0 {
+  padding: 0;
+}
+.p-1 {
+  padding: 0.25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-5 {
+  padding: 1.25rem;
+}
+.p-6 {
+  padding: 1.5rem;
+}
+
+.m-0 {
+  margin: 0;
+}
+.m-1 {
+  margin: 0.25rem;
+}
+.m-2 {
+  margin: 0.5rem;
+}
+.m-3 {
+  margin: 0.75rem;
+}
+.m-4 {
+  margin: 1rem;
+}
+.m-5 {
+  margin: 1.25rem;
+}
+.m-6 {
+  margin: 1.5rem;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* ===================== Text Utilities ===================== */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-extrabold {
+  font-weight: 800;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-base {
+  font-size: 1rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.text-white {
+  color: #ffffff;
+}
+.text-black {
+  color: #000000;
+}
+
+/* ===================== Borders & Radius Utilities ===================== */
+.border {
+  border: 1px solid #d1d5db;
+}
+.border-0 {
+  border: 0;
+}
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* ===================== Flex Utilities ===================== */
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+
+/* ===================== Button Utilities ===================== */
+.btn {
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn:hover {
+  background-color: #2563eb;
+}
+
+/* ===================== Card Utilities ===================== */
+.card {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 0.04);
+  padding: 1rem;
+}
+
+/* ===================== Grid Utilities ===================== */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* ===================== Gap Utilities ===================== */
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-5 {
+  gap: 1.25rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+
+/* ===================== Utilities ===================== */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.transition {
+  transition: all 0.2s;
+}

@@ -1,0 +1,11 @@
+[**modern-react-template v0.0.9**](../../../../README.md)
+
+***
+
+[modern-react-template](../../../../modules.md) / [components/Button/Button](../README.md) / Button
+
+# Variable: Button
+
+> `const` **Button**: `ForwardRefExoticComponent`\<[`ButtonProps`](../interfaces/ButtonProps.md) & `RefAttributes`\<`HTMLButtonElement`\>\>
+
+Defined in: [src/components/Button/Button.tsx:31](https://github.com/asudbury/modern-react-template/blob/e551150c6d7b992f2996ee9c8cc1f4169b755230/src/components/Button/Button.tsx#L31)

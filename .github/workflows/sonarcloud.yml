@@ -1,0 +1,63 @@
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_sonarcloud:
+        description: 'Run SonarCloud analysis'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    # Only run if RUN_SONARCLOUD is explicitly set to 'true' OR workflow_dispatch input is true
+    # For forks: Set this in Settings → Secrets and variables → Actions → Variables
+    if: vars.RUN_SONARCLOUD == 'true' || inputs.run_sonarcloud == true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Log workflow context
+        run: |
+          echo "[SonarCloud] Triggered by $GITHUB_EVENT_NAME on ref $GITHUB_REF for $GITHUB_REPOSITORY"
+          echo "[SonarCloud] RUN_SONARCLOUD=${{ vars.RUN_SONARCLOUD }}"
+          echo "[SonarCloud] SONAR_ORGANIZATION=${{ vars.SONAR_ORGANIZATION }}"
+          echo "[SonarCloud] SONAR_PROJECT_KEY=${{ vars.SONAR_PROJECT_KEY }}"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:unit -- --run --coverage
+
+      - name: SonarCloud Scan
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
+            -Dsonar.sources=src
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.verbose=true
