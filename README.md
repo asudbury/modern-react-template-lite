@@ -3,6 +3,19 @@
 
 A modern, accessibility-first React 19 application built with Vite 7 and TypeScript 5. This template enforces strict rules for accessibility (WCAG 2.2 AA), performance, and code quality.
 
+## 📚 DeepWiki Project Knowledge Base
+
+> **Explore the full documentation, architecture, and deep technical notes for this project on DeepWiki:**
+>
+> [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asudbury/modern-react-template-lite)
+>
+> - Comprehensive guides, diagrams, and design decisions
+> - Contributor onboarding and advanced usage tips
+> - Maintainer notes, troubleshooting, and best practices
+>
+> **This is the canonical knowledge base for the project. If you're contributing, maintaining, or deploying, start here!**
+
+
 ### Fully functional version
 There is a fully functional version available here [modern-react-template](https://github.com/asudbury/modern-react-template)
 
