@@ -35,6 +35,7 @@ There is a fully functional version available here [modern-react-template](https
 
 ```bash
 # Install dependencies
+npm install
 
 # Start development server
 npm run dev
@@ -72,6 +73,7 @@ Unit tests with Vitest
 ### Testing
 - `npm run test` - Run unit tests in watch mode
 - `npm run test:unit` - Run unit tests
+- `npm run test:coverage` - Run tests with coverage
 - `npm run test:ui` - Run tests with UI
 
 ## Project Structure
@@ -79,26 +81,26 @@ Unit tests with Vitest
 ```
 modern-react-template-lite/
 ├── .github/
-│   ├── workflows/
-│   │   ├── ci.yml             # CI/CD pipeline
 │   └── copilot-instructions.md # Copilot coding guidelines
 ├── .husky/
-│   └── pre-commit             # Pre-commit hooks
+│   ├── commit-msg              # Commit message validation
+│   └── pre-commit              # Pre-commit hooks
 ├── src/
-│   ├── pages/                 # Route/page components
-│   ├── test/                  # Test setup/mocks
-│   ├── App.tsx                # Root app component
-│   ├── main.tsx               # Entry point (includes error boundary)
-│   └── index.css              # Global styles
-├── .env.example               # Environment variables template
-├── .gitignore                 # Git ignore rules
-├── .gitleaksignore            # Secret scanning ignore rules
-├── .prettierrc                # Prettier configuration
-├── eslint.config.js           # ESLint configuration
-├── package.json               # Dependencies and scripts
-├── tsconfig.json              # TypeScript configuration
-├── vite.config.ts             # Vite configuration
-└── vitest.config.ts           # Vitest configuration
+│   ├── assets/                 # Static assets
+│   ├── test/                   # Test setup/mocks
+│   ├── App.tsx                 # Root app component
+│   ├── App.test.tsx            # Root app tests
+│   ├── main.tsx                # Entry point (includes error boundary)
+│   └── index.css               # Global styles
+├── .env.example                # Environment variables template
+├── .gitignore                  # Git ignore rules
+├── .gitleaksignore             # Secret scanning ignore rules
+├── .prettierrc                 # Prettier configuration
+├── eslint.config.js            # ESLint configuration
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript configuration
+├── vite.config.ts              # Vite configuration
+└── vitest.config.ts            # Vitest configuration
 ```
 
 ## Code Quality & Security
@@ -220,17 +222,6 @@ The CI pipeline runs on every push and pull request:
 2. **Format** - Prettier checks
 3. **Test** - Unit tests with Vitest
 4. **Build** - Production build
-
-## Pre-commit Hooks
-
-Husky runs the following checks on every commit:
-
-1. Format code with Prettier
-2. Run unit tests
-3. Lint with ESLint
-4. Build the project
-
-If any check fails, the commit is blocked.
 
 ## Contributing
 
