@@ -29,6 +29,18 @@ There is a fully functional version available here [modern-react-template](https
 
 ## Quick Start
 
+Project-level npm defaults are defined in `.npmrc`:
+
+```ini
+# Wait 7 days before allowing newly published package versions.
+min-release-age=7
+
+# Allow package lifecycle scripts to run during install.
+# Change to true to stop install scripts
+ignore-scripts=false
+
+```
+
 ```bash
 # Install dependencies
 npm install
