@@ -21,7 +21,7 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
@@ -36,8 +36,8 @@
     "@types/react-dom": "^19.2.3",
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^5.1.1",
-    "@vitest/coverage-v8": "^4.0.16",
-    "@vitest/ui": "^4.0.16",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/ui": "^4.1.9",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -47,7 +47,7 @@
     "eslint-plugin-testing-library": "^7.15.3",
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^16.5.0",
-    "happy-dom": "^20.0.11",
+    "happy-dom": "^20.10.6",
     "husky": "^9.1.7",
     "jsdom": "^27.2.0",
     "knip": "^5.77.0",
@@ -55,8 +55,8 @@
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.50.1",
-    "vite": "^7.3.0",
-    "vitest": "^4.0.16"
+    "vite": "^7.3.6",
+    "vitest": "^4.1.9"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
