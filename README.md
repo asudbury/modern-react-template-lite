@@ -273,3 +273,11 @@ MIT
 - [ESLint](https://eslint.org/)
 - [Husky](https://typicode.github.io/husky/)
 - [Prettier](https://prettier.io/)
+
+## ❤️ Support My Work
+
+<a href="https://www.buymeacoffee.com/asudbury">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+       alt="Buy Me A Coffee"
+       height="60">
+</a>
